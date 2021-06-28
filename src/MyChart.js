@@ -16,28 +16,27 @@ export function MyChart({ value }) {
   React.useEffect(() => {
     let data = new Array();
     const getData = async () => {
+      const time_interval = "6h";
       let response = await axios.get(
-        `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=5m&id=${value}`
+        `https://prices.runescape.wiki/api/v1/osrs/timeseries?timestep=${time_interval}&id=${value}`
       );
       response = response.data;
-      console.log(response.data);
       for (let i = 0; i < response.data.length; i += 12) {
         let time = getFormattedTime(response.data[i].timestamp);
         console.log(time);
         data.push({
           timestamp: time,
           avgHighPrice: response.data[i].avgHighPrice,
+          avgLowPrice: response.data[i].avgLowPrice,
         });
       }
-      //data = data.filter(([_, y]) => y != null);
-      // console.log(data);
+
       setState((prevState) => ({ ...prevState, data: data }));
     };
     getData();
   }, [value]);
 
   if (value) {
-    console.log(state);
     const reg_line = (
       <div>
         <LineChart
@@ -47,24 +46,18 @@ export function MyChart({ value }) {
           margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
         >
           <Line type="monotone" dataKey="avgHighPrice" stroke="#8884d8" />
+          <Line type="monotone" dataKey="avgLowPrice" stroke="#82ca9d" />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
           <XAxis dataKey="timestamp" />
-          <YAxis dataKey="avgHighPrice" />
+          <YAxis
+            domain={[
+              (dataMin) => 0 - Math.floor(dataMax + dataMax * 0.1),
+              (dataMax) => Math.floor(dataMax + dataMax * 0.1),
+            ]}
+          />
           <Tooltip />
         </LineChart>
       </div>
-    );
-    const simple_line = (
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart width={300} height={100} data={state.data}>
-          <Line
-            type="monotone"
-            dataKey="avgHighPrice"
-            stroke="#8884d8"
-            strokeWidth={2}
-          />
-        </LineChart>
-      </ResponsiveContainer>
     );
     return reg_line;
   } else {
