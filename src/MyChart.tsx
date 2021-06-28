@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react";
-import axios from "axios";
+import React, { PureComponent } from 'react';
+import axios from 'axios';
 import {
   LineChart,
   Line,
@@ -9,10 +9,13 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from "recharts";
-import { getFormattedTime } from "./util";
+} from 'recharts';
+import { getFormattedTime } from './util';
 export function MyChart({ value }) {
-  const [state, setState] = React.useState({ label: "Series 1", data: [] });
+  const [state, setState] = React.useState({
+    label: 'Series 1',
+    data: [] as any[],
+  });
   React.useEffect(() => {
     let data = new Array();
     const getData = async () => {
@@ -43,8 +46,7 @@ export function MyChart({ value }) {
           width={600}
           height={300}
           data={state.data}
-          margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
-        >
+          margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
           <Line type="monotone" dataKey="avgHighPrice" stroke="#8884d8" />
           <Line type="monotone" dataKey="avgLowPrice" stroke="#82ca9d" />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
