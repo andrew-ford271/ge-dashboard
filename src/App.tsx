@@ -1,17 +1,30 @@
-import React from 'react';
-import './App.css';
-import { Banner } from './banner';
-import { Example } from './Example';
-import { MyChart } from './MyChart';
-
+import React from "react";
+import "./App.css";
+import { Banner } from "./banner";
+import { Example } from "./Example";
+import { ItemChart } from "./MyChart";
+import { ItemTable } from "./ItemTable";
+type Item = {
+  id: number;
+  name: string;
+};
 function App() {
-  const [value, setValue] = React.useState(null);
+  const [item, setItem] = React.useState<Item | null>({
+    name: "Cannonball",
+    id: 2,
+  });
+  const [time_value, setTimeValue] = React.useState<string | null>(null);
 
   return (
     <div>
-      <Banner setValue={setValue} />
+      <Banner setValue={setItem} />
       <Example />
-      <MyChart value={value} />
+      <ItemChart
+        item={item}
+        time_interval={time_value}
+        setTimeValue={setTimeValue}
+      />
+      <ItemTable />
     </div>
   );
 }

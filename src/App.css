@@ -1,10 +1,41 @@
 .App {
   text-align: center;
 }
-
+#button_tray {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  max-width: 600px;
+}
+#item_title {
+  align-items: initial;
+  width: 600px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+}
+.ButtonGroup {
+  /* align-items: flex-end; */
+  margin-left: auto;
+  flex-direction: row;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+.ChartBox {
+  max-width: 1400px;
+}
+#LineChart {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  padding-left: 500px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
