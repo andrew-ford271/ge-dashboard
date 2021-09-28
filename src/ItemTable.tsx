@@ -41,10 +41,10 @@ export function ItemTable() {
         <TableHead>
           <TableRow>
             <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell align="right">Test Column 1</TableCell>
+            <TableCell align="right">Test Column 2</TableCell>
+            <TableCell align="right">Test Column 3</TableCell>
+            <TableCell align="right">Test Column 4</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
